@@ -1,3 +1,16 @@
+<?php
+session_start(); // Her zaman en başta!
+
+require_once("../Ayar/Config.php");
+
+// Eğer kullanıcı giriş yapmamışsa, giriş sayfasına yönlendir
+if(empty($_SESSION['email'])) {
+    echo "<script>window.location.href='Admin_Login.php'</script>";
+    exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

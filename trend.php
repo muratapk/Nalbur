@@ -37,7 +37,7 @@ $sql="Select * from Products order by id Desc limit 10";
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
                         <a href="detail.php?id=<?php echo $row['id'];?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Ürün Detay</a>
-                        <a href="" id="sepet" data-id="<?php echo $row['id'];?>" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Sepet Ekle</a>
+                        <a href=""  data-id="<?php echo $row['id'];?>" class="sepet btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Sepet Ekle</a>
                     </div>
                 </div>
             </div>

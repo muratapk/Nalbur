@@ -86,9 +86,9 @@ if(empty($_SESSION['email'])) {
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php?page=admin">
+                <a class="nav-link" href="index.php?page=siparis">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Admin</span></a>
+                    <span>Siparişlerim</span></a>
             </li>
 
             <li class="nav-item">

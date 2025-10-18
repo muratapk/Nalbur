@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 12 Eki 2025, 09:21:52
+-- Üretim Zamanı: 18 Eki 2025, 13:34:05
 -- Sunucu sürümü: 10.4.32-MariaDB
 -- PHP Sürümü: 8.2.12
 
@@ -62,7 +62,35 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `password`, `role`, `created_at`) VALUES
-(2, 'Taha', 'taha@hotmail.com', 'TAha123', 'admin', '2025-10-04 21:00:00');
+(2, 'Taha', 'taha@hotmail.com', 'Taha123', 'admin', '2025-10-04 21:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `card`
+--
+
+CREATE TABLE `card` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` decimal(10,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `card_items`
+--
+
+CREATE TABLE `card_items` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -113,7 +141,7 @@ CREATE TABLE `discounts` (
 --
 
 CREATE TABLE `gallery` (
-  `Id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `image_url` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -122,13 +150,18 @@ CREATE TABLE `gallery` (
 -- Tablo döküm verisi `gallery`
 --
 
-INSERT INTO `gallery` (`Id`, `product_id`, `image_url`) VALUES
+INSERT INTO `gallery` (`id`, `product_id`, `image_url`) VALUES
 (1, 1, '2400492025-10-11-13-04-12.jpg'),
 (2, 1, '2062522025-10-11-13-04-30.jpg'),
 (3, 1, '1922052025-10-11-13-04-39.jpg'),
 (4, 2, '1924502025-10-11-13-08-39.jpg'),
 (5, 0, '1329852025-10-11-13-09-37.jpg'),
-(6, 0, '666432025-10-11-13-10-18.jpg');
+(6, 0, '666432025-10-11-13-10-18.jpg'),
+(9, 2, '2228432025-10-12-10-26-07.jpg'),
+(10, 3, '3942292025-10-12-10-26-28.jpg'),
+(11, 3, '9067712025-10-12-10-26-37.jpg'),
+(12, 4, '5472222025-10-12-10-26-55.jpg'),
+(13, 4, '183582025-10-12-10-27-14.jpg');
 
 -- --------------------------------------------------------
 
@@ -163,16 +196,34 @@ CREATE TABLE `orders` (
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `order_items`
+-- Tablo için tablo yapısı `orderss`
 --
 
-CREATE TABLE `order_items` (
+CREATE TABLE `orderss` (
   `id` int(11) NOT NULL,
-  `order_id` int(11) DEFAULT NULL,
-  `product_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `price` decimal(10,2) NOT NULL
+  `price` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `orderss`
+--
+
+INSERT INTO `orderss` (`id`, `user_id`, `product_id`, `quantity`, `price`) VALUES
+(1, 2, 9, 1, 1),
+(2, 2, 9, 1, 1),
+(3, 2, 9, 1, 1),
+(4, 2, 9, 1, 1),
+(5, 2, 9, 1, 1),
+(6, 2, 9, 1, 1),
+(7, 2, 9, 5, 1),
+(8, 2, 9, 11, 1),
+(9, 2, 9, 5, 1),
+(10, 2, 9, 5, 1),
+(11, 2, 9, 5, 1),
+(12, 2, 9, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -213,8 +264,8 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `name`, `description`, `price`, `discount`, `stock_quantity`, `category_id`, `image_url`, `created_at`) VALUES
 (1, 'Taha', '                    dsfasfd                ', 100.00, 50, 10, NULL, '7583242025-10-11-12-15-20.jpg', '2025-10-11 07:54:15'),
 (2, 'Taha45', '                              dsfasfd                        ', 10.00, 0, 10, NULL, '9423042025-10-11-11-25-42.png', '2025-10-11 08:06:21'),
-(3, 'Taha', 'afdsa', 10.00, 0, 10, NULL, '', '2025-10-11 08:17:25'),
-(4, 'Murat', 'dsdgs', 10.00, 0, 10, 10, '', '2025-10-11 08:37:55'),
+(3, 'Taha', '          afdsa        ', 10.00, 0, 10, NULL, '457222025-10-12-10-26-20.png', '2025-10-11 08:17:25'),
+(4, 'Murat', '          dsdgs        ', 10.00, 0, 10, 10, '905832025-10-12-10-26-48.jpg', '2025-10-11 08:37:55'),
 (5, 'Murat', 'dsdgs', 10.00, 0, 10, 10, '', '2025-10-11 08:40:48'),
 (6, '', '', 0.00, 0, 0, NULL, '', '2025-10-11 08:46:45'),
 (7, 'Murat', 'dsdgs', 10.00, 0, 10, 10, '', '2025-10-11 08:47:14'),
@@ -285,6 +336,13 @@ CREATE TABLE `users` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Tablo döküm verisi `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `address`, `created_at`) VALUES
+(1, 'Taha', 'taha@hotmail.com', 'Taha123', 'asdfas', '', '2025-10-12 10:36:56');
+
 -- --------------------------------------------------------
 
 --
@@ -316,6 +374,18 @@ ALTER TABLE `admins`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Tablo için indeksler `card`
+--
+ALTER TABLE `card`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `card_items`
+--
+ALTER TABLE `card_items`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Tablo için indeksler `categories`
 --
 ALTER TABLE `categories`
@@ -333,7 +403,7 @@ ALTER TABLE `discounts`
 -- Tablo için indeksler `gallery`
 --
 ALTER TABLE `gallery`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Tablo için indeksler `logs`
@@ -347,16 +417,13 @@ ALTER TABLE `logs`
 -- Tablo için indeksler `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Tablo için indeksler `order_items`
+-- Tablo için indeksler `orderss`
 --
-ALTER TABLE `order_items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `order_id` (`order_id`),
-  ADD KEY `product_id` (`product_id`);
+ALTER TABLE `orderss`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Tablo için indeksler `payments`
@@ -426,6 +493,18 @@ ALTER TABLE `admins`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- Tablo için AUTO_INCREMENT değeri `card`
+--
+ALTER TABLE `card`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `card_items`
+--
+ALTER TABLE `card_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- Tablo için AUTO_INCREMENT değeri `categories`
 --
 ALTER TABLE `categories`
@@ -441,7 +520,7 @@ ALTER TABLE `discounts`
 -- Tablo için AUTO_INCREMENT değeri `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `logs`
@@ -456,10 +535,10 @@ ALTER TABLE `orders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Tablo için AUTO_INCREMENT değeri `order_items`
+-- Tablo için AUTO_INCREMENT değeri `orderss`
 --
-ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `orderss`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `payments`
@@ -495,7 +574,7 @@ ALTER TABLE `stock_movements`
 -- Tablo için AUTO_INCREMENT değeri `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `user_discounts`
@@ -506,6 +585,13 @@ ALTER TABLE `user_discounts`
 --
 -- Dökümü yapılmış tablolar için kısıtlamalar
 --
+
+--
+-- Tablo kısıtlamaları `card_items`
+--
+ALTER TABLE `card_items`
+  ADD CONSTRAINT `card_items_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `card_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE SET NULL;
 
 --
 -- Tablo kısıtlamaları `categories`
@@ -525,13 +611,6 @@ ALTER TABLE `logs`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
-
---
--- Tablo kısıtlamaları `order_items`
---
-ALTER TABLE `order_items`
-  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE SET NULL;
 
 --
 -- Tablo kısıtlamaları `payments`
